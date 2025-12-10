@@ -44,6 +44,35 @@
             <h2>Projects</h2>
 
         </div>
+        <section id="contact">
+            <form method="POST">
+                <div class="input-group">
+                    <label for="first-name">First Name</label>
+                    <input id="first-name" type="text" placeholder="Enter your first name" required />
+                </div>
+                <div class="input-group">
+                    <label for="last-name">Last Name</label>
+                    <input id="last-name" type="text" placeholder="Enter your last name" required />
+                </div>
+                <div class="input-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="business inquiry" selected>Business Inquiry</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="general question">General Question</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="email-name">Email</label>
+                    <input id="email-name" type="text" placeholder="Enter your email" required />
+                </div>
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+                </div>
+                <button>Submit</button>
+            </form>
+        </section>
     </main>
 
     <footer>
