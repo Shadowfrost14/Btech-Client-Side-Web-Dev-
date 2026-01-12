@@ -148,8 +148,7 @@ class CookieStorageProductDao extends ProductDao {
 			.split("; ")
 			.find((row) => row.startsWith("products"))
 			?.split("=")[1];
-		console.log("products cookieValue");
-		console.log(cookieValue);
+
 		const productsData = cookieValue ? JSON.parse(cookieValue) : ProductDao.seeds;
 		return productsData.map(
 			(productData) => new Product(productData.name, productData.inventory),
@@ -206,11 +205,7 @@ class CookieStorageDeliveryDao extends DeliveryDao {
 			.split("; ")
 			.find((row) => row.startsWith("deliveries"))
 			?.split("=")[1];
-		console.log("Delivery cookieValue");
-		console.log(cookieValue);
 		const deliveriesData = cookieValue ? JSON.parse(cookieValue) : [];
-		console.log("deliveriesData");
-		console.log(deliveriesData);
 		return deliveriesData.map((deliveryData) => new Delivery(deliveryData));
 	}
 	create(delivery) {
@@ -219,10 +214,6 @@ class CookieStorageDeliveryDao extends DeliveryDao {
 		document.cookie = `deliveries=${JSON.stringify(
 			existingDeliveries,
 		)}; max-age=30; path=/;`;
-		console.log("`deliveries=${JSON.stringify(existingDeliveries)}; max-age=30`");
-		console.log(`deliveries=${JSON.stringify(existingDeliveries)}; max-age=30`);
-		console.log("document.cookie");
-		console.log(document.cookie);
 	}
 }
 
@@ -235,19 +226,13 @@ class CreateDeliveryService {
 	createDelivery(productName, quantity, address, scheduledTime) {
 		const product = this.productDao.getProductByName(productName);
 		const newInventory = product.inventory - quantity;
-		console.log("before product.inventory");
-		console.log(product.inventory);
 		product.inventory = newInventory;
-		console.log("after product.inventory");
-		console.log(product.inventory);
 		const deliveryData = {
 			quantity,
 			product,
 			address,
 			scheduledTime,
 		};
-		console.log("deliveryData");
-		console.log(deliveryData);
 		this.deliveryDao.create(deliveryData);
 		this.productDao.update(product);
 	}
@@ -257,8 +242,6 @@ const deliveryDao = new CookieStorageDeliveryDao();
 // const productDao = new SessionStorageProductDAO();
 // const deliveryDao = new SessionStorageDeliveryDao();
 const createDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
-console.log("productDao.getProductByName(Bananas)");
-console.log(productDao.getProductByName("Bananas"));
 
 const deliveryList = document.getElementById("deliveries-list");
 const deliveries = deliveryDao.getAll();
@@ -288,14 +271,8 @@ for (let i = 0; i < products.length; i++) {
 
 function handleChangeToProductName(event) {
 	const productName = event.target.value;
-	console.log("productName");
-	console.log(productName);
 	const selectedProduct = productDao.getProductByName(productName);
-	console.log("selectedProduct");
-	console.log(selectedProduct);
 	const existingInventory = selectedProduct.inventory;
-	console.log("existingInventory");
-	console.log(existingInventory);
 	quantityInput.setAttribute("max", existingInventory);
 }
 
@@ -307,8 +284,6 @@ createDeliveryForm.addEventListener("submit", (event) => {
 	const formData = new FormData(event.target);
 	const address = formData.get("address");
 	const scheduledTime = formData.get("scheduledTime");
-	console.log("scheduledTime");
-	console.log(scheduledTime);
 	const productName = formData.get("productName");
 	const quantity = formData.get("quantity");
 	createDeliveryService.createDelivery(productName, quantity, address, scheduledTime);
