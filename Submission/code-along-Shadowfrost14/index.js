@@ -46,3 +46,270 @@ qaItems.forEach((qaItem) => {
 
 	accordionDiv.appendChild(questionDiv);
 });
+
+class DatabaseObject {
+	toString() {
+		throw new Error("Not implemented");
+	}
+}
+
+class Product extends DatabaseObject {
+	constructor(name, inventory) {
+		super();
+		this.name = name;
+		this.inventory = inventory;
+	}
+
+	toString() {
+		return `${this.name}:  ${this.inventory} left in stock`;
+	}
+}
+class Delivery extends DatabaseObject {
+	constructor(params) {
+		super();
+		const { address, scheduledTime, product, quantity } = params;
+		this.address = address;
+		this.scheduledTime = scheduledTime;
+		this.product = product;
+		this.quantity = quantity;
+	}
+
+	toString() {
+		return `Delivering ${this.quantity} of ${this.product.name} to ${this.address} at ${this.scheduledTime}`;
+	}
+
+	static create(params) {
+		return new Delivery(params);
+	}
+}
+
+class ProductDao {
+	static seeds = [
+		{
+			name: "Apples",
+			inventory: 100,
+		},
+
+		{
+			name: "Bananas",
+			inventory: 90,
+		},
+
+		{
+			name: "Peaches",
+			inventory: 70,
+		},
+	];
+	getAll() {
+		throw new Error("Not implemented");
+	}
+	// getProductByName(name) {
+	// 	throw new Error("Not implemented");
+	// }
+	getProductByName(name) {
+		const products = this.getAll();
+		return products.find((product) => product.name == name);
+	}
+	updateProduct() {
+		throw new Error("Not implemented");
+	}
+}
+
+class SessionStorageProductDAO extends ProductDao {
+	constructor() {
+		super();
+		this.database = sessionStorage;
+	}
+	getAll() {
+		const productsAsJSON = this.database.getItem("products");
+		const productsData = productsAsJSON ? JSON.parse(productsAsJSON) : ProductDao.seeds;
+		return productsData.map((productData) => {
+			const { name, inventory } = productData;
+			return new Product(name, inventory);
+		});
+	}
+	// getProductByName(name) {
+	// 	const products = this.getAll();
+	// 	return products.find((product) => product.name == name);
+	// }
+	update(product) {
+		const existingProducts = this.getAll();
+		const indexToDelete = existingProducts.findIndex(
+			(productInList) => productInList.name == product.name,
+		);
+		existingProducts.splice(indexToDelete, 1, product);
+		this.database.setItem("products", JSON.stringify(existingProducts));
+	}
+}
+
+class CookieStorageProductDao extends ProductDao {
+	getAll() {
+		const cookieValue = document.cookie
+			.split("; ")
+			.find((row) => row.startsWith("products"))
+			?.split("=")[1];
+		console.log("products cookieValue");
+		console.log(cookieValue);
+		const productsData = cookieValue ? JSON.parse(cookieValue) : ProductDao.seeds;
+		return productsData.map(
+			(productData) => new Product(productData.name, productData.inventory),
+		);
+	}
+	update(product) {
+		const existingProducts = this.getAll();
+		const indexToDelete = existingProducts.findIndex(
+			(productInList) => productInList.name == product.name,
+		);
+		existingProducts.splice(indexToDelete, 1, product);
+		document.cookie = `products=${JSON.stringify(existingProducts)}; max-age=30;`;
+	}
+}
+
+class DeliveryDao {
+	getAll() {
+		throw new Error("Not implemented");
+	}
+	update() {
+		throw new Error("Not implemented");
+	}
+}
+
+class SessionStorageDeliveryDao extends DeliveryDao {
+	constructor() {
+		super();
+		this.database = sessionStorage;
+	}
+	getAll() {
+		const deliveriesInSessionStorage = this.database.getItem("deliveries");
+		const deliveriesData = deliveriesInSessionStorage
+			? JSON.parse(deliveriesInSessionStorage)
+			: [];
+		return deliveriesData.map((deliveryData) => {
+			const { address, scheduledTime, product, quantity } = deliveryData;
+			return Delivery.create(deliveryData);
+		});
+	}
+	create(delivery) {
+		const deliveries = this.getAll();
+		deliveries.push(delivery);
+		this.database.setItem("deliveries", JSON.stringify(deliveries));
+	}
+}
+
+class CookieStorageDeliveryDao extends DeliveryDao {
+	constructor() {
+		super();
+		this.database = document.cookie;
+	}
+	getAll() {
+		const cookieValue = document.cookie
+			.split("; ")
+			.find((row) => row.startsWith("deliveries"))
+			?.split("=")[1];
+		console.log("Delivery cookieValue");
+		console.log(cookieValue);
+		const deliveriesData = cookieValue ? JSON.parse(cookieValue) : [];
+		console.log("deliveriesData");
+		console.log(deliveriesData);
+		return deliveriesData.map((deliveryData) => new Delivery(deliveryData));
+	}
+	create(delivery) {
+		const existingDeliveries = this.getAll();
+		existingDeliveries.push(delivery);
+		document.cookie = `deliveries=${JSON.stringify(
+			existingDeliveries,
+		)}; max-age=30; path=/;`;
+		console.log("`deliveries=${JSON.stringify(existingDeliveries)}; max-age=30`");
+		console.log(`deliveries=${JSON.stringify(existingDeliveries)}; max-age=30`);
+		console.log("document.cookie");
+		console.log(document.cookie);
+	}
+}
+
+class CreateDeliveryService {
+	constructor(productDao, deliveryDao) {
+		this.productDao = productDao;
+		this.deliveryDao = deliveryDao;
+	}
+
+	createDelivery(productName, quantity, address, scheduledTime) {
+		const product = this.productDao.getProductByName(productName);
+		const newInventory = product.inventory - quantity;
+		console.log("before product.inventory");
+		console.log(product.inventory);
+		product.inventory = newInventory;
+		console.log("after product.inventory");
+		console.log(product.inventory);
+		const deliveryData = {
+			quantity,
+			product,
+			address,
+			scheduledTime,
+		};
+		console.log("deliveryData");
+		console.log(deliveryData);
+		this.deliveryDao.create(deliveryData);
+		this.productDao.update(product);
+	}
+}
+const productDao = new CookieStorageProductDao();
+const deliveryDao = new CookieStorageDeliveryDao();
+// const productDao = new SessionStorageProductDAO();
+// const deliveryDao = new SessionStorageDeliveryDao();
+const createDeliveryService = new CreateDeliveryService(productDao, deliveryDao);
+console.log("productDao.getProductByName(Bananas)");
+console.log(productDao.getProductByName("Bananas"));
+
+const deliveryList = document.getElementById("deliveries-list");
+const deliveries = deliveryDao.getAll();
+for (let i = 0; i < deliveries.length; i++) {
+	const delivery = deliveries[i];
+	const deliveryLi = document.createElement("li");
+	deliveryLi.textContent = delivery.toString();
+	deliveryList.appendChild(deliveryLi);
+}
+
+const productNameSelect = document.querySelector("#deliveries form select");
+const quantityInput = document.querySelector("#deliveries form input[name='quantity']");
+const products = productDao.getAll();
+for (let i = 0; i < products.length; i++) {
+	const product = products[i];
+	const option = document.createElement("option");
+	option.innerText = product.toString();
+	option.setAttribute("value", product.name);
+	const existingInventory = product.inventory;
+	if (i == 0) {
+		quantityInput.setAttribute("max", existingInventory);
+	}
+	if (existingInventory > 0) {
+		productNameSelect.appendChild(option);
+	}
+}
+
+function handleChangeToProductName(event) {
+	const productName = event.target.value;
+	console.log("productName");
+	console.log(productName);
+	const selectedProduct = productDao.getProductByName(productName);
+	console.log("selectedProduct");
+	console.log(selectedProduct);
+	const existingInventory = selectedProduct.inventory;
+	console.log("existingInventory");
+	console.log(existingInventory);
+	quantityInput.setAttribute("max", existingInventory);
+}
+
+productNameSelect.addEventListener("change", handleChangeToProductName);
+
+const createDeliveryForm = document.querySelector("#deliveries form");
+createDeliveryForm.addEventListener("submit", (event) => {
+	event.preventDefault();
+	const formData = new FormData(event.target);
+	const address = formData.get("address");
+	const scheduledTime = formData.get("scheduledTime");
+	console.log("scheduledTime");
+	console.log(scheduledTime);
+	const productName = formData.get("productName");
+	const quantity = formData.get("quantity");
+	createDeliveryService.createDelivery(productName, quantity, address, scheduledTime);
+});
