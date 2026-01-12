@@ -280,7 +280,7 @@ productNameSelect.addEventListener("change", handleChangeToProductName);
 
 const createDeliveryForm = document.querySelector("#deliveries form");
 createDeliveryForm.addEventListener("submit", (event) => {
-	event.preventDefault();
+	//event.preventDefault();
 	const formData = new FormData(event.target);
 	const address = formData.get("address");
 	const scheduledTime = formData.get("scheduledTime");
