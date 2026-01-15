@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cacher's Deliveries Dashboard</title>
+    <link rel="stylesheet" href="src/output.css" />
+</head>
+
+<body class="bg-slate-100 flex flex-wrap md:flex-row h-screen">
+    <!-- navbar starts here -->
+    <div class="bg-slate-700 text-white">
+        <div class="flex justify-between md:justify-center items-center m-2">
+            <a href="/">
+                <img src="images/Cachers.png" alt="logo" class="w-14 h-14 rounded-full object-cover" />
+            </a>
+            <button id="menu-toggle" class="p-4 text-slate-400 hover:text-slate-200 active:text-slate md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 6l16 0" />
+                    <path d="M4 12l16 0" />
+                    <path d="M4 18l16 0" />
+                </svg>
+            </button>
+        </div>
+        <nav id="menu" class="hidden md:h-[calc(100%-5.5rem)] md:flex md:flex-col md:justify-between md:w-52">
+            <ul class="flex flex-col text-sm text-slate-400">
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Dashboard</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Analytics</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Ecommerce</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Products</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Email</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+
+                <li><a href="#" class="flex justify-between items-center p-4 hover:bg-slate-600 hover:text-slate-200">
+                        <span>Shipping</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+            <!-- Profile -->
+            <a href="#"
+                class="flex justify-between items-center px-4 text-slate-400 text-sm hover:bg-slate-600 hover: text-slate-200 py-2">
+                <div class="flex items-center">
+                    <img src="images/problem.jpg" alt="profile" class="w-12 h-12 rounded-full object-cover mr-4" />
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" width="24" height="24" viewBox="0 0 24 24"
+                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 6l16 0" />
+                    <path d="M4 12l16 0" />
+                    <path d="M4 18l16 0" />
+                </svg>
+            </a>
+        </nav>
+    </div>
+    <main class="flex-1 p-4">
+        <!-- Card Section -->
+        <div class="flex flex-col sm:flex-row flex-wrap gap-4 text-slate-800 w-full">
+            <!-- Card Start -->
+            <div class="bg-white w-fulll px-4 py-2 rounded-xl shadow min-w-56 sm:max-w-80">
+                <span class="text-slate-400 text-sm">Ad Spend</span>
+                <div class="my-8 w-full ">
+                    <div class="flex justify-center mb-2">
+                        <span class="text-2xl mr-1 mt-1">$</span>
+                        <span class="text-6xl font-bold">65.47</span>
+                    </div>
+                    <p class="text-green-500 text-xl text-center">
+                        <span>&#x2193;</span> 120%
+                    </p>
+                    <p class="text-sm text-center text-slate-400 mb-4">vs previous 30 days</p>
+                </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card Start -->
+            <div class="bg-white w-fulll px-4 py-2 rounded-xl shadow min-w-56 sm:max-w-80">
+                <span class="text-slate-400 text-sm">Cost Per Thousand (CPM)</span>
+                <div class="my-8 w-full ">
+                    <div class="flex justify-center mb-2">
+                        <span class="text-2xl mr-1 mt-1">$</span>
+                        <span class="text-6xl font-bold">284</span>
+                    </div>
+                    <p class="text-green-500 text-xl text-center">
+                        <span>&#x2193;</span> $0.38
+                    </p>
+                    <p class="text-sm text-center text-slate-400 mb-4">vs previous 30 days</p>
+                </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card Start -->
+            <div class="bg-white w-fulll px-4 py-2 rounded-xl shadow min-w-56 sm:max-w-80">
+                <span class="text-slate-400 text-sm">Cost Per Click (CPC)</span>
+                <div class="my-8 w-full ">
+                    <div class="flex justify-center mb-2">
+                        <span class="text-2xl mr-1 mt-1">$</span>
+                        <span class="text-6xl font-bold">0.12</span>
+                    </div>
+                    <p class="text-red-500 text-xl text-center">
+                        <span>&#x2193;</span> $0.02
+                    </p>
+                    <p class="text-sm text-center text-slate-400 mb-4">vs previous 30 days</p>
+                </div>
+            </div>
+            <!-- Card End -->
+
+            <!-- Card Start -->
+            <div class="bg-white w-fulll px-4 py-2 rounded-xl shadow min-w-56 sm:max-w-80">
+                <span class="text-slate-400 text-sm">Click-Through Rate (CTR)</span>
+                <div class="my-8 w-full ">
+                    <div class="flex justify-center mb-2">
+                        <span class="text-2xl mr-1 mt-1">2.98</span>
+                        <span class="text-6xl font-bold">%</span>
+                    </div>
+                    <p class="text-green-500 text-xl text-center">
+                        <span>&#x2193;</span> 7%
+                    </p>
+                    <p class="text-sm text-center text-slate-400 mb-4">vs previous 30 days</p>
+                </div>
+            </div>
+            <!-- Card End -->
+        </div>
+        <!-- Cards Section End-->
+
+        <div class="w-full my-4 sm-px-8 max-w-[1394px] mx-auto">
+            <img src="images/data.png" alt="sales chart" class="round-xl shadow" />
+        </div>
+    </main>
+</body>
+
+</html>
