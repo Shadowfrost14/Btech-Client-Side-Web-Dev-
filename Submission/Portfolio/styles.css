@@ -1,86 +1,183 @@
 body {
+	background-color: #fdf0d5;
+	background: radial-gradient(#c1121f, #1c2124);
+	backdrop-filter: blur(10px); /* Adjust blur strength as needed */
+	-webkit-backdrop-filter: blur(10px);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	margin: 0;
 	padding: 0;
+	font-family: "Roboto Mono", monospace;
+	font-optical-sizing: auto;
+	font-weight: 200;
+	font-style: normal;
 }
-#left-button-container {
-	opacity: 0;
+
+/* Portfolio */
+
+#protfolio {
+	color: white;
+	display: flex;
+	justify-content: center;
+	font-family: "quicksand";
+	font-optical-sizing: auto;
+	font-weight: 200;
+	font-style: normal;
+}
+
+/* NavBar */
+
+#navbar {
+	border-radius: 15px;
+	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: fixed;
-	top: 0;
-	height: 100vh;
-	width: 4vh;
-	padding: 10px;
-}
-#left-button-container:hover {
-	opacity: 1;
-	background-image: linear-gradient(to right, rgb(0, 238, 255, 1), rgba(255, 0, 0, 0));
-	animation: fadeIn 0.5s ease-in forwards;
+	flex-direction: column;
+	font-family: "quicksand";
+	font-optical-sizing: auto;
+	font-weight: 200;
+	font-style: normal;
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0; /* Initial state: fully transparent */
-	}
-	to {
-		opacity: 1; /* Final state: fully visible */
-	}
-}
-
-.left-circular-button {
-	display: none;
-}
-#left-button-container:hover .left-circular-button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-#right-button-container {
-	align-self: flex-end;
-	opacity: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	height: 100vh;
-	width: 5vh;
-	padding: 10px;
-}
-#right-button-container:hover {
-	opacity: 1;
-	background-image: linear-gradient(to left, rgb(0, 238, 255, 1), rgba(255, 0, 0, 0));
-	animation: fadeIn 0.5s ease-in forwards;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0; /* Initial state: fully transparent */
-	}
-	to {
-		opacity: 1; /* Final state: fully visible */
-	}
-}
-
-.right-circular-button {
-	display: none;
-	-webkit-transform: scaleX(-1);
-	transform: scaleX(-1);
-}
-#right-button-container:hover .right-circular-button {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.block {
-	background-color: red;
-	width: 100%;
-	height: 200px;
+#navbar a {
 	margin: 10px;
+	color: aliceblue;
+	text-decoration: none;
+}
+
+/* Bio */
+
+#bio {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #e27171;
+	width: 50vw;
+}
+
+#bio img {
+	border-radius: calc(infinity * 1px);
+}
+
+/* Projects */
+#projects-div h2 {
+	display: flex;
+	justify-content: center;
+	font-size: 50px;
+	color: white;
+	font-weight: 300;
+}
+#projects-ul {
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+.project {
+	color: white;
+	padding: 25px;
+	margin: 0;
+	background-color: #1c2124;
+	border-style: solid;
+	border-width: thin;
+	border-color: rgb(65, 64, 64);
+	width: 25vw;
+	height: 60vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.project a {
+	color: #e27171;
+	font-weight: 400;
+	text-decoration: none;
+}
+
+.project header {
+	font-size: 40px;
+	color: white;
+	background-image: linear-gradient(45deg, white 0% 20%, #e27171 50% 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.project p {
+	font-size: 25px;
+}
+
+/* Contact */
+#contact {
+	display: flex;
+	justify-content: center;
+}
+
+#contact form {
+	width: 30vw;
+	margin: 20px;
+	padding: 2rem;
+}
+.input-row {
+	display: flex;
+	margin-bottom: 1rem;
+	width: 100%;
+}
+.input-group {
+	flex-grow: 1;
+	margin-right: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.input-group label {
+	margin-bottom: 0;
+	color: white;
+}
+
+.input-group input {
+	background-color: transparent;
+	color: #e27171;
+	border-color: #e27171;
+	border: 1px solid;
+	border-radius: 15px;
+	padding: 0.5rem;
+	height: 1rem;
+}
+
+.input-group input::placeholder {
+	color: #e27171;
+}
+
+.input-group select {
+	background-color: transparent;
+	color: #e27171;
+	border-color: #e27171;
+	padding: 0.5rem;
+	width: 11rem;
+	height: 2rem;
+	border-radius: 5px;
+}
+
+.input-group textarea {
+	background-color: transparent;
+	border-color: #e27171;
+	border-radius: 5px;
+}
+
+.input-group textarea::placeholder {
+	color: #e27171;
+}
+
+form button {
+	background-color: transparent;
+	color: #e27171;
+	border-color: #e27171;
+}
+
+footer {
 }

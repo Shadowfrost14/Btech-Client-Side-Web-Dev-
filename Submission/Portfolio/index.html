@@ -7,32 +7,31 @@
     <link rel="stylesheet" href="styles.css">
     <title>Kaden's Portfolio</title>
     <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bubbler+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <a id="left-button-container" href="../Follow-Along-Website/index.html">
-        <img class="left-circular-button" src="images/reshot-icon-left-arrow-VCGUT7EKR3.svg" height="25px"
-            width="25px" />
-    </a>
-    <a id="right-button-container" href="">
-        <img class="right-circular-button" src="images/reshot-icon-left-arrow-VCGUT7EKR3.svg" height="25px"
-            width="25px" />
-    </a>
-    <header>
+    <header id="protfolio">
         <h1>Kaden's Portfolio</h1>
     </header>
 
     <main>
-        <div>
+        <div id="navbar">
             <h2>Links</h2>
-            <a
-                href="www.linkedin.com/in/kaden-garner-325092396?uym_source=share&utm_campaign=share_via&utm_content=profile&utn_medium=ios_app">LinkedIn</a>
-            <a href="https://github.com/Shadowfrost14">Github</a>
+            <div>
+                <a
+                    href="www.linkedin.com/in/kaden-garner-325092396?uym_source=share&utm_campaign=share_via&utm_content=profile&utn_medium=ios_app">LinkedIn</a>
+                <a href="https://github.com/Shadowfrost14">Github</a>
+            </div>
+
         </div>
-        <div>
+        <div id="bio">
             <h2>Bio</h2>
-            <img src="c:\Users\kaden.garner\Pictures\Camera Roll\WIN_20251110_11_39_43_Pro.jpg" alt="Kaden Garner"
-                width="75px" height="75px" />
+            <img src="images/WIN_20251110_11_39_43_Pro.jpg" alt="Kaden Garner" width="75px" height="75px" />
             <p>My name is Kaden Garner, and I am committed to becoming a web developer. I enjoy coding, math, and art,
                 which all contribute to my passion for building websites. I am proficient in Python, Java, JavaScript,
                 HTML, CSS, SQL, and C#, and hold certifications in the first six. I also have a background in
@@ -41,30 +40,33 @@
                 I believe this knowledge strengthens my skills as a web developer.</p>
         </div>
         <div id="projects-div">
-            <h2>Projects</h2>
-
+            <h2>(Projects)</h2>
         </div>
         <section id="contact">
             <form method="POST">
-                <div class="input-group">
-                    <label for="first-name">First Name</label>
-                    <input id="first-name" type="text" placeholder="Enter your first name" required />
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="first-name">First Name</label>
+                        <input id="first-name" type="text" placeholder="Enter your first name" required />
+                    </div>
+                    <div class="input-group">
+                        <label for="last-name">Last Name</label>
+                        <input id="last-name" type="text" placeholder="Enter your last name" required />
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="last-name">Last Name</label>
-                    <input id="last-name" type="text" placeholder="Enter your last name" required />
-                </div>
-                <div class="input-group">
-                    <label for="subject">Subject</label>
-                    <select id="subject">
-                        <option value="business inquiry" selected>Business Inquiry</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="general question">General Question</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="email-name">Email</label>
-                    <input id="email-name" type="text" placeholder="Enter your email" required />
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject">
+                            <option value="business inquiry" selected>Business Inquiry</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="general question">General Question</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="email-name">Email</label>
+                        <input id="email-name" type="text" placeholder="Enter your email" required />
+                    </div>
                 </div>
                 <div class="input-group">
                     <label for="message">Message</label>
