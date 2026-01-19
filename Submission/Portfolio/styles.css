@@ -73,10 +73,28 @@ body {
 #projects-ul {
 	display: flex;
 	justify-content: center;
+	transition: flex-direction 0.5s ease-in-out;
+	gap: 10px;
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
 }
+
+#projects-ul.active {
+	display: flex;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	gap: 0px;
+}
+.project.active {
+	max-height: 60vh;
+	max-width: 25vw;
+}
+.project.active header {
+	font-size: 40px;
+}
+
 .project {
 	color: white;
 	padding: 25px;
@@ -85,8 +103,13 @@ body {
 	border-style: solid;
 	border-width: thin;
 	border-color: rgb(65, 64, 64);
-	width: 25vw;
-	height: 60vh;
+
+	max-width: 15vw;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.25s ease, max-width 0.25s ease, transform 0.5s ease,
+		opacity 0.5s ease;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -94,21 +117,26 @@ body {
 
 .project a {
 	color: #e27171;
+	display: none;
 	font-weight: 400;
 	text-decoration: none;
 }
 
 .project header {
-	font-size: 40px;
 	color: white;
 	background-image: linear-gradient(45deg, white 0% 20%, #e27171 50% 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
+	transition: font-size 0.25s ease;
 }
 
 .project p {
-	font-size: 25px;
+	font-size: 15px;
+}
+
+.project.active a {
+	display: block;
 }
 
 /* Contact */

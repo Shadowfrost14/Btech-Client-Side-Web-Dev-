@@ -46,6 +46,12 @@ projectItems.forEach((projectItem) => {
 	descriptionP.textContent = descriptionText;
 
 	projectsUl.appendChild(projectLi);
+
+	projectsUl.addEventListener("click", () => {
+		projectsUl.classList.toggle("active");
+		projectLi.classList.toggle("active");
+	});
+
 	projectLi.appendChild(titleHeader);
 	projectLi.appendChild(urlLink);
 	projectLi.appendChild(descriptionP);
