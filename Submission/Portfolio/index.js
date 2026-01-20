@@ -38,7 +38,7 @@ projectItems.forEach((projectItem) => {
 	titleHeader.textContent = titleText;
 
 	const urlLink = document.createElement("a");
-	urlLink.setAttribute("href", "#");
+	urlLink.setAttribute("href", "project.html");
 	urlLink.setAttribute("target", "_blank");
 	urlLink.textContent = urlText;
 
