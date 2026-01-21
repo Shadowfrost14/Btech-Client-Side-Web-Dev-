@@ -139,6 +139,28 @@ body {
 	display: block;
 }
 
+/* Testimonials/Reviews */
+#testimonials {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	color: white;
+	padding: 25px;
+	margin: 20px auto;
+	background-color: #1c2124;
+	border-style: solid;
+	border-width: thin;
+	border-color: rgb(65, 64, 64);
+
+	width: 50vw;
+}
+
+#testimonials form {
+	display: flex;
+	flex-direction: column;
+}
+
 /* Contact */
 #contact {
 	display: flex;
